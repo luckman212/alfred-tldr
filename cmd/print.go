@@ -179,7 +179,7 @@ func choicePlatform(pts []tldr.Platform, selected tldr.Platform) tldr.Platform {
 		}
 	}
 
-	// Note: unexpected case, we assume one pts at least but if zero return common
+	// Note: unexpected case, we assume one platform in pts at least but if empty, return common
 	if len(pts) == 0 {
 		return tldr.PlatformCommon
 	}
