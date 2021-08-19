@@ -6,10 +6,9 @@ import (
 )
 
 type envs struct {
-	formatFunc                       func(string) string
-	openURLModKey                    alfred.ModKey
-	isUpdateWorkflowRecommendEnabled bool
-	isUpdateDBRecommendEnabled       bool
+	formatFunc                 func(string) string
+	openURLModKey              alfred.ModKey
+	isUpdateDBRecommendEnabled bool
 }
 
 type config struct {
@@ -29,6 +28,5 @@ func newConfig() *config {
 	cfg.fromEnv.formatFunc = getCommandFormatFunc()
 	cfg.fromEnv.openURLModKey = getOpenURLMod()
 	cfg.fromEnv.isUpdateDBRecommendEnabled = isUpdateDBRecommendEnabled()
-	cfg.fromEnv.isUpdateWorkflowRecommendEnabled = isUpdateWorkflowRecommendEnabled()
 	return cfg
 }

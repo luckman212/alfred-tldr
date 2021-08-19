@@ -1,10 +1,7 @@
 package cmd
 
 import (
-	"context"
-	"errors"
 	"fmt"
-	"time"
 
 	"github.com/konoui/go-alfred"
 )
@@ -16,18 +13,6 @@ func printUpdateResults(err error) (_ error) {
 		fmt.Fprintf(outStream, "update succeeded")
 	}
 	return
-}
-
-func (cfg *config) updateTLDRWorkflow() error {
-	if cfg.confirm {
-		awf.Logger().Infoln("updating tldr workflow...")
-		ctx, cancel := context.WithTimeout(context.Background(), 3*time.Minute)
-		defer cancel()
-		err := awf.Updater().Update(ctx)
-		return printUpdateResults(err)
-	}
-
-	return errors.New("direct update via flag is not supported")
 }
 
 func (cfg *config) updateDB() error {

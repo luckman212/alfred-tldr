@@ -403,22 +403,6 @@ func TestUpdateExecution(t *testing.T) {
 			wantMsg:     "update succeeded",
 			expectedErr: false,
 		},
-		{
-			name: "update-workflow confirmation does not support",
-			args: args{
-				command: "--update-workflow",
-			},
-			expectedErr: true,
-			errMsg:      "direct update via flag is not supported",
-		},
-		{
-			name: "when update-workflow without updater, nil updater returns error. update execution outputs message to stdout",
-			args: args{
-				command: "--update-workflow --confirm",
-			},
-			expectedErr: false,
-			wantMsg:     "update failed due to no implemented",
-		},
 	}
 
 	for _, tt := range tests {

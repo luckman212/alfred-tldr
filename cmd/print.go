@@ -6,21 +6,22 @@ import (
 	"fmt"
 	"net/url"
 	"strings"
+	"time"
 
 	"github.com/konoui/alfred-tldr/pkg/tldr"
 	"github.com/konoui/go-alfred"
 )
 
 func (cfg *config) printPage(cmds []string) error {
-	// insert update recommendation first
-	ctx := context.Background()
-	if cfg.fromEnv.isUpdateWorkflowRecommendEnabled && awf.Updater().NewerVersionAvailable(ctx) {
-		awf.Append(
+	ctx, cancel := context.WithTimeout(context.Background(), 2*time.Second)
+	defer cancel()
+	if !alfred.HasUpdateArg() && awf.Updater().NewerVersionAvailable(ctx) {
+		awf.SetSystemInfo(
 			alfred.NewItem().
-				Title("Newer tldr wrokflow is available!").
+				Title("Newer workflow is available!").
 				Subtitle("Please Enter!").
-				Arg(fmt.Sprintf("--%s --%s", updateWorkflowFlag, confirmFlag)).
-				Variable(nextActionKey, nextActionShell).
+				Autocomplete(alfred.ArgWorkflowUpdate).
+				Valid(false).
 				Icon(awf.Assets().IconAlertNote()),
 		)
 	}

@@ -62,9 +62,6 @@ func NewRootCmd() *cobra.Command {
 			if cfg.version {
 				return cfg.printVersion(version, revision)
 			}
-			if cfg.updateWorkflow {
-				return cfg.updateTLDRWorkflow()
-			}
 			if cfg.update {
 				return cfg.updateDB()
 			}

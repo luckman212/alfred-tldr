@@ -37,12 +37,13 @@ func init() {
 			awf.Logger().Warnln(err.Error())
 		}
 	}()
+	interval = 0
 	awf = alfred.NewWorkflow(
 		alfred.WithMaxResults(30),
 		alfred.WithGitHubUpdater(
 			"konoui",
 			"alfred-tldr",
-			version,
+			"v0.0.1",
 			interval,
 		),
 	)
@@ -106,10 +107,6 @@ func getCommandFormatFunc() func(string) string {
 
 func isUpdateDBRecommendEnabled() bool {
 	return parseBool(envKeyUpdateDBRecommendation)
-}
-
-func isUpdateWorkflowRecommendEnabled() bool {
-	return parseBool(envKeyUpdateWorkflowRecommendation)
 }
 
 func getUpdateWorkflowInterval() (time.Duration, error) {

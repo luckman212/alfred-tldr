@@ -4,15 +4,13 @@
   },
   "items": [
     {
-      "variables": {
-        "nextAction": "shell"
-      },
-      "title": "Newer tldr wrokflow is available!",
+      "title": "Newer workflow is available!",
       "subtitle": "Please Enter!",
-      "arg": "--update-workflow --confirm",
       "icon": {
         "path": "/tmp/assets/AlertNoteIcon.icns"
-      }
+      },
+      "autocomplete": "workflow:update",
+      "valid": false
     },
     {
       "title": "Lists open files and the corresponding processes.",
